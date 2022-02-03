@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:mobx_aula/controller.dart';
 
 class Home extends StatefulWidget {
   Home({Key? key}) : super(key: key);
@@ -8,13 +10,15 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int _contador = 0;
+  // int _contador = 0;
 
-  _incrementar() {
-    setState(() {
-      _contador++;
-    });
-  }
+  // _incrementar() {
+  //   setState(() {
+  //     _contador++;
+  //   });
+  // }
+
+  Controller controller = Controller();
 
   @override
   Widget build(BuildContext context) {
@@ -24,17 +28,22 @@ class _HomeState extends State<Home> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.all(16),
-              child: Text(
-                "$_contador",
-                style: TextStyle(
-                  color: Colors.purple.shade300,
-                  fontSize: 50,
-                ),
-              ),
-            ),
+                padding: const EdgeInsets.all(16),
+                child: Observer(
+                  builder: (_) {
+                    return Text(
+                      "${controller.contador}",
+                      style: TextStyle(
+                        color: Colors.purple.shade300,
+                        fontSize: 50,
+                      ),
+                    );
+                  },
+                )),
             ElevatedButton(
-              onPressed: _incrementar,
+              onPressed: () {
+                controller.incrementar!();
+              },
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
