@@ -42,7 +42,7 @@ class _HomeState extends State<Home> {
                 )),
             ElevatedButton(
               onPressed: () {
-                controller.incrementar!();
+                controller.incrementar();
               },
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
