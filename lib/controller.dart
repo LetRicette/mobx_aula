@@ -5,6 +5,13 @@ class Controller = ControllerBase with _$Controller;
 
 //a utlilização do mixin Store é para a geração dos códigos automáticos
 abstract class ControllerBase with Store {
+  //Executa sempre que um observável tem seu estado alterado
+  ControllerBase() {
+    autorun((_) {
+      print(contador);
+    });
+  }
+
   @observable
   int contador = 0;
 
